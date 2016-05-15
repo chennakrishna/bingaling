@@ -34,7 +34,7 @@ var driver = new webdriver.Builder()
 
 function login(account, password) {
 	console.log('account', account);
-	password = 'Bindu@8Krishna';
+	//password = 'Bindu@8Krishna';
 	console.log('password', password);
 	driver.findElement(By.name('loginfmt')).sendKeys(account);
 	driver.sleep(200);
@@ -54,7 +54,7 @@ function randomSleep(){
     driver.get('https://login.live.com/login.srf?wa=wsignin1.0&rpsnv=12&ct=1454042759&rver=6.7.6631.0&wp=MBI&wreply=https%3a%2f%2fwww.bing.com%2fsecure%2fPassport.aspx%3frequrl%3dhttps%253a%252f%252fwww.bing.com%252frewards%252fdashboard%253fwlexpsignin%253d1&lc=1033&id=264960');
 	driver.sleep(4000);
 	console.log(process.argv[0], process.argv[1]);
-	login(process.argv[2]);
+	login(process.argv[2], process.argv[3]);
 	driver.sleep(2000);
 	driver.wait(until.elementLocated(By.className('white')), 10 * 1000).then(function(elm) {
     	elm.click();
