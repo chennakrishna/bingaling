@@ -39,7 +39,7 @@ function login(account, password) {
 	driver.sleep(2000);
 	driver.findElement(By.name('passwd')).sendKeys(password);
 	driver.sleep(2000);
-	driver.findElement(By.name('SI')).click().then(function(){
+	driver.findElement(By.id('idSIButton9')).click().then(function(){
 	driver.sleep(4000);
 	});
 }
@@ -52,7 +52,7 @@ function randomSleep(){
 
 var promise = require('selenium-webdriver').promise;
 
-var webdriver = require('..'),
+var webdriver = require('selenium-webdriver'),
     By = webdriver.By,
     until = webdriver.until;
 
@@ -64,20 +64,24 @@ var driver = new webdriver.Builder()
     driver.get('https://login.live.com/login.srf?wa=wsignin1.0&rpsnv=12&ct=1454042759&rver=6.7.6631.0&wp=MBI&wreply=https%3a%2f%2fwww.bing.com%2fsecure%2fPassport.aspx%3frequrl%3dhttps%253a%252f%252fwww.bing.com%252frewards%252fdashboard%253fwlexpsignin%253d1&lc=1033&id=264960');
 	driver.sleep(4000);
 	login(process.argv[2], process.argv[3]);
-	driver.wait(until.titleIs('Bing Rewards - Dashboard'), 10000);
+	driver.wait(until.titleIs('Bing Rewards - Dashboard'), 10000000);
 	driver.sleep(2000);
 	//Ensure we are logged in
-	var confirmLogin = driver.findElement(By.id('id_n'));
-	confirmLogin.getInnerHtml().then(function(html){
-		if(html !== process.argv[4]){
-			driver.findElement(By.id('id_s')).click().then(function(){
-				driver.findElement(By.id('id_link_text')).click().then(function(){
+	// var confirmLogin = driver.findElement(By.id('id_n'));
+	// confirmLogin.getInnerHtml().then(function(html){
+	// 	if(html !== process.argv[4]){
+	// 		driver.findElement(By.id('id_s')).click().then(function(){
+	// 			driver.findElement(By.id('id_link_text')).click().then(function(){
+	// 				driver.sleep(2000);
+	// 				login(i, accounts);
+	// 			});
+	// 		});
+	// 	}
+	// });
+	driver.findElement(By.className('simpleSignIn')).click().then(function(){
 					driver.sleep(2000);
-					login(i, accounts);
-				});
-			});
-		}
-	});
+	 				//login(i, accounts);
+	 			});
 
 	driver.get('http://www.newsnow.co.uk/h/Sport');
 	driver.sleep(3000);
